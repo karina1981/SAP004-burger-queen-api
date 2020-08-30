@@ -1,10 +1,10 @@
-version: '3.4'
+version: "3.4"
 
 services:
   dev:
     image: node:12-alpine
     container_name: bq-api-node
-    command:  npm run dev
+    command: sh -c "npm run dev"
     working_dir: /app
     ports:
       - "3000:3000"
@@ -13,14 +13,15 @@ services:
     networks:
       - bq-network
     depends_on:
-      - db
+      - db-postgres
+      - db-mysql
 
-  db:
+  db-postgres:
     image: postgres
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=example
-    container_name: bq-api-node_db
+      - POSTGRES_PASSWORD=docker
+    container_name: bq-api-postgres
     ports:
       - "5432:5432"
     volumes:
@@ -28,8 +29,24 @@ services:
     networks:
       - bq-network
 
+  db-mysql:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=burger
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=docker
+      - MYSQL_ROOT_PASSWORD=docker
+    container_name: bq-api-mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbmysql:/var/lib/mysql
+    networks:
+      - bq-network
+
 volumes:
   database:
+  dbmysql:
 
 networks:
   bq-network:

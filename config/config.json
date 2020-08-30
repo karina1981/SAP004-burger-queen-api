@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": "docker",
+    "database": "burger",
+    "host": "172.19.0.2",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": "docker",
+    "database": "burger",
+    "host": "172.19.0.2",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": "docker",
+    "database": "burger",
+    "host": "172.19.0.2",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}
